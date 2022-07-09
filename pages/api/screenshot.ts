@@ -1,4 +1,5 @@
 import type { NextApiHandler } from 'next';
+import type { PuppeteerLifeCycleEvent } from 'puppeteer-core';
 import puppeteer from 'puppeteer-core';
 import chrome from 'chrome-aws-lambda';
 
@@ -11,10 +12,16 @@ type RequestData = {
   url?: string;
   height?: number;
   width?: number;
+  waitUntil?: PuppeteerLifeCycleEvent;
 };
 
 const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
-  const { url, width = 1200, height = 750 } = req.body as RequestData;
+  const {
+    url,
+    width = 1920,
+    height = 1080,
+    waitUntil = 'networkidle0',
+  } = req.body as RequestData;
 
   if (!url) {
     res.status(400).json({ error: 'No URL specified' });
@@ -38,7 +45,7 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
 
     const page = await browser.newPage();
     await page.setViewport({ width, height });
-    await page.goto(url, { waitUntil: 'networkidle0' });
+    await page.goto(url, { waitUntil });
     const image = (await page.screenshot({
       type: 'png',
       encoding: 'base64',
