@@ -61,6 +61,36 @@ const Home: NextPage = () => {
           <pre>{`<Image src={\`data:image/png;base64,${image}\`} width={1200} height={750} alt="Screenshot" />`}</pre>
         </>
       )}
+      <pre>{`
+const fetchScreenshot = async () => {
+  setLoading(true);
+
+  try {
+    const response = await fetch('/api/screenshot', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ url }),
+    });
+
+    const data = (await response.json()) as ScreenshotResponse;
+
+    if (data.error) {
+      throw new Error(data.error);
+    }
+
+    setImage(data.image);
+  } catch (apiError) {
+    const message =
+      apiError instanceof Error ? apiError.message : (apiError as string);
+
+    setError(message);
+  } finally {
+    setLoading(false);
+  }
+};
+    `}</pre>
     </div>
   );
 };
