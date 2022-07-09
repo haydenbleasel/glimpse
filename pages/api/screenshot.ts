@@ -8,7 +8,7 @@ export type ScreenshotResponse = {
 };
 
 const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
-  const { url } = JSON.parse(req.body as string) as { url: string };
+  const { url } = req.body as { url: string };
 
   if (!url) {
     res.status(400).json({ error: 'No URL specified' });
