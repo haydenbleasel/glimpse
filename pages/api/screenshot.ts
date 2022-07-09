@@ -7,8 +7,14 @@ export type ScreenshotResponse = {
   image?: string;
 };
 
+type RequestData = {
+  url?: string;
+  height?: number;
+  width?: number;
+};
+
 const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
-  const { url } = req.body as { url: string };
+  const { url, width = 1200, height = 750 } = req.body as RequestData;
 
   if (!url) {
     res.status(400).json({ error: 'No URL specified' });
@@ -31,7 +37,7 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
     );
 
     const page = await browser.newPage();
-    await page.setViewport({ width: 1200, height: 750 });
+    await page.setViewport({ width, height });
     await page.goto(url, { waitUntil: 'networkidle0' });
     const image = (await page.screenshot({
       type: 'png',
