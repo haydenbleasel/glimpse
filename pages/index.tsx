@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { Camera, Star } from 'react-feather';
+import { Camera, Globe, Star } from 'react-feather';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import js from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
@@ -18,8 +18,10 @@ const Home: NextPage = () => (
       />
     </Head>
     <div className="container prose mx-auto py-24 px-4">
-      <div className="mb-16 text-gray-400">
+      <div className="text-md mb-16 flex items-center gap-2 text-gray-400">
         <Camera />
+        <span>+</span>
+        <Globe />
       </div>
       <h1>Glimpse</h1>
       <p>
