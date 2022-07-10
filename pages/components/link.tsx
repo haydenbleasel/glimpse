@@ -1,13 +1,13 @@
 import Image from 'next/future/image';
+import type { LinkProps } from 'next/link';
 import Link from 'next/link';
-import type { FC, ReactNode } from 'react';
+import type { FC } from 'react';
 import { useAsync, useMountEffect } from '@react-hookz/web';
 import { ArrowUpRight } from 'react-feather';
 import type { ScreenshotResponse } from '../api/screenshot';
 import Placeholder from './placeholder';
 
-type PreviewLinkProps = {
-  href: string;
+type PreviewLinkProps = LinkProps & {
   children: ReactNode;
 };
 
@@ -54,13 +54,17 @@ const PreviewLink: FC<PreviewLinkProps> = ({ children, href, ...props }) => {
         target="_blank"
         rel="noopener noreferrer"
         className="text-md inline font-normal text-gray-900 transition-colors hover:text-gray-600 dark:text-white dark:hover:text-gray-300"
+        passHref
         {...props}
       >
-        {children}
-        <ArrowUpRight
-          size={14}
-          className="ml-[2px] inline -translate-y-[2px]"
-        />
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <a>
+          {children}
+          <ArrowUpRight
+            size={14}
+            className="ml-[2px] inline -translate-y-[2px]"
+          />
+        </a>
       </Link>
     </span>
   );

@@ -11,7 +11,6 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
   },
   experimental: {
-    newNextLinkBehavior: true,
     images: {
       allowFutureImage: true,
     },
