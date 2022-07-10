@@ -33,7 +33,9 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
   }
 
   if (authorizationHeader !== process.env.GLIMPSE_PASSPHASE) {
-    res.status(401).json({ error: `Unauthorized: ${authorizationHeader!}` });
+    res
+      .status(401)
+      .json({ error: `Unauthorized: ${authorizationHeader ?? 'None'}` });
     return;
   }
 
