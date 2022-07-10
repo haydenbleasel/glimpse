@@ -22,9 +22,17 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
     height = 1080,
     waitUntil = 'networkidle0',
   } = req.body as RequestData;
+  const { Authorization } = req.headers;
+
+  console.log(Authorization, req.headers);
 
   if (!url) {
     res.status(400).json({ error: 'No URL specified' });
+    return;
+  }
+
+  if (!Authorization || Authorization !== process.env.GLIMPSE_PASSPHASE) {
+    res.status(401).json({ error: 'Unauthorized' });
     return;
   }
 
