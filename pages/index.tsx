@@ -203,7 +203,7 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
 export default handler;
 `}</SyntaxHighlighter>
       <h2>What are the limitations?</h2>
-      <p>Two primarily, which I'll work on fixing over time:</p>
+      <p>Three primarily, which I will work on fixing over time:</p>
       <ol>
         <li>
           Vercel serverless functions are limited to a 10-second timeout. You
@@ -214,6 +214,12 @@ export default handler;
         <li>
           Puppeteer itself has a timeout which I may need to rework to fit
           Vercel&apos;s timeout.
+        </li>
+        <li>
+          The screenshot tends to be taken prematurely, based on the fact
+          we&apos;re waiting for <code>networkidle0</code>.{' '}
+          <code>networkidle2</code> would be a better choice but tends to
+          timeout the function a lot more often.
         </li>
       </ol>
       <p>
