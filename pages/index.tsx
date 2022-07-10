@@ -219,9 +219,10 @@ export default handler;
         </li>
         <li>
           The screenshot tends to be taken prematurely, based on the fact
-          we&apos;re waiting for <code>networkidle0</code>.{' '}
-          <code>networkidle2</code> would be a better choice but tends to
-          timeout the function a lot more often.
+          we&apos;re waiting for <code>networkidle0</code>. For more complex
+          websites with intro animations and custom fonts, the screenshot may be
+          taken in an interim state. <code>networkidle2</code> would be a better
+          choice but tends to timeout the function a lot more often.
         </li>
       </ol>
       <p>
