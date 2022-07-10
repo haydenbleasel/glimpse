@@ -3,7 +3,7 @@ import { Camera, Star } from 'react-feather';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import js from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
-import Link from './components/link';
+import Link from '../components/link';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 
