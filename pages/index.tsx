@@ -16,6 +16,12 @@ const Home: NextPage = () => (
         name="description"
         content="Glimpse is a simple website screenshot tool to create link previews!"
       />
+      <link rel="og:image" href="http://glimpse.haydenbleasel.com/cover.png" />
+      <link
+        rel="icon"
+        type="image/png"
+        href="http://glimpse.haydenbleasel.com/favicon.png"
+      />
     </Head>
     <div className="container prose mx-auto py-24 px-4">
       <div className="text-md mb-16 flex items-center gap-2 text-gray-400">
