@@ -30,7 +30,7 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
   }
 
   if (!Authorization || Authorization !== process.env.GLIMPSE_PASSPHASE) {
-    res.status(401).json({ error: 'Unauthorized' });
+    res.status(401).json({ error: `Unauthorized: ${Authorization as string}` });
     return;
   }
 
