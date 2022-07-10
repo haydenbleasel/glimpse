@@ -1,12 +1,8 @@
 import type { NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import { Camera, Globe, Star } from 'react-feather';
-import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
-import js from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript';
-import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import Code from '../components/code';
 import Link from '../components/link';
-
-SyntaxHighlighter.registerLanguage('javascript', js);
 
 const url = 'https://glimpse.haydenbleasel.com/';
 const title = 'Glimpse - Hayden Bleasel';
@@ -102,15 +98,7 @@ const Home: NextPage = () => (
         </Link>{' '}
         to fetch the screenshot on-request client-side.
       </p>
-      <SyntaxHighlighter
-        language="javascript"
-        style={atomOneDark}
-        customStyle={{
-          padding: '1.5rem',
-          height: '24rem',
-          overflow: 'auto',
-        }}
-      >{`import Image from 'next/future/image';
+      <Code>{`import Image from 'next/future/image';
 import Link from 'next/link';
 import type { FC } from 'react';
 import { useAsync, useMountEffect } from '@react-hookz/web';
@@ -164,19 +152,11 @@ const PreviewLink: FC<{ href: string }> = ({ children, href, ...props }) => {
   );
 };
 
-export default PreviewLink;`}</SyntaxHighlighter>
+export default PreviewLink;`}</Code>
       <h3>
         <code>/api/screenshot.ts</code>
       </h3>
-      <SyntaxHighlighter
-        language="javascript"
-        style={atomOneDark}
-        customStyle={{
-          padding: '1.5rem',
-          height: '24rem',
-          overflow: 'auto',
-        }}
-      >{`import type { NextApiHandler } from 'next';
+      <Code>{`import type { NextApiHandler } from 'next';
 
 export type ScreenshotResponse = {
   error?: string;
@@ -233,7 +213,7 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
 };
 
 export default handler;
-`}</SyntaxHighlighter>
+`}</Code>
       <h2>What are the limitations?</h2>
       <p>Three primarily, which I will work on fixing over time:</p>
       <ol>
