@@ -19,6 +19,7 @@ const Home: NextPage = () => (
         url,
         title,
         description,
+        type: 'website',
         images: [
           {
             url: new URL('/cover.png', url).href,
