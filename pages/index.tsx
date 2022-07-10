@@ -240,6 +240,16 @@ export default handler;
         If a screenshot fails to load, it returns a nice error and you can
         handle this on the client-side like I&apos;ve done above.
       </p>
+      <h2>This seems super complex. Why not just use an iframe?</h2>
+      <p>
+        Many websites on the internet use an HTTP Response Header called
+        X-Frame-Options to indicate whether or not a browser should be allowed
+        to render a page in an iframe (or similar elements). If this header is
+        set to <code>DENY</code>, it can help avoid click-jacking attacks by
+        ensuring that their content is not embedded into other sites.
+        Unfortunately, it also means using iframes in link previews would be a
+        no-go.
+      </p>
       <h2>Enough with the preamble. Gimme the code!</h2>
       <p>
         Fine! You can check out the source code on the{' '}
