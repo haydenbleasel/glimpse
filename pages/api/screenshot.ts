@@ -24,8 +24,6 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
   } = req.body as RequestData;
   const { Authorization } = req.headers;
 
-  console.log(Authorization, req.headers);
-
   if (!url) {
     res.status(400).json({ error: 'No URL specified' });
     return;
