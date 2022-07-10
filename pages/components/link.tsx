@@ -1,7 +1,7 @@
 import Image from 'next/future/image';
 import type { LinkProps } from 'next/link';
 import Link from 'next/link';
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 import { useAsync, useMountEffect } from '@react-hookz/web';
 import { ArrowUpRight } from 'react-feather';
 import type { ScreenshotResponse } from '../api/screenshot';
