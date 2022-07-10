@@ -161,8 +161,9 @@ export type ScreenshotResponse = {
   image?: string;
 };
 
-/* Replace this with your own endpoint */
+/* Replace this with your own data */
 const glimpse = 'https://glimpse.haydenbleasel.com/api/screenshot';
+const auth = 'my-secret-passphrase';
 
 const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
   const { url } = JSON.parse(req.body as string) as { url: string };
@@ -179,6 +180,7 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': auth,
         },
         body: JSON.stringify({
           url,
