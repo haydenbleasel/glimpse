@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import Head from 'next/head';
 import { Camera, Star } from 'react-feather';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import js from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript';
@@ -8,67 +9,78 @@ import Link from '../components/link';
 SyntaxHighlighter.registerLanguage('javascript', js);
 
 const Home: NextPage = () => (
-  <div className="container prose mx-auto py-24 px-4">
-    <div className="mb-16 text-gray-400">
-      <Camera />
-    </div>
-    <h1>Glimpse</h1>
-    <p>
-      Glimpse is a simple website screenshot tool{' '}
-      <Link href="https://haydenbleasel.com/">Hayden Bleasel</Link> made to
-      create link previews! It&apos;s effectively an serverless API endpoint
-      deployed on <Link href="https://vercel.com/">Vercel</Link> takes a URL and
-      returns a screenshot of the page.
-    </p>
-    <h2>Can I use it on my site?</h2>
-    <p>
-      This specific domain is password-protected and designed to run my websites
-      (my <Link href="https://haydenbleasel.com/">personal site</Link> and{' '}
-      <Link href="https://tryneutral.com">Neutral</Link>) however if you fork
-      the repo and deploy it to Vercel, you can use it on your site.
-    </p>
-    <h2>Why is it in a seperate repo?</h2>
-    <p>
-      Long story short, Vercel serverless functions have a 50MB limit which does{' '}
-      <Link href="https://github.com/vercel/community/discussions/103">
-        not always
-      </Link>{' '}
-      calculate the way you think it would. Other dependencies get mixed in the
-      bundle size, even if they are not used in the API handler. It also needs{' '}
-      <Link href="https://github.com/alixaxel/chrome-aws-lambda/issues/275">
-        Node 14
-      </Link>{' '}
-      to run, which is a pretty specific requirement. So, I made it a separate
-      repo to avoid all that drama and i just <code>fetch()</code> it from the
-      API handler in my personal sites.
-    </p>
-    <h2>Can I see a demo?</h2>
-    <p>
-      You&apos;re looking at it! All the external links on this site use Glimpse
-      to generate a preview. If you want to see how the API works, just enter a
-      URL below (or use my personal website) and hit the button to see the
-      result.
-    </p>
-    <h2>Once I clone it, how do I make it work?</h2>
-    <p>Like so!</p>
-    <h3>Client-side</h3>
-    <p>
-      Really depends on your implementation method but I used a{' '}
-      <code>useAsync</code> hook from{' '}
-      <Link href="https://react-hookz.github.io/web/?path=/docs/side-effect-useasync--example">
-        @react-hookz/web
-      </Link>{' '}
-      to fetch the screenshot on-request client-side.
-    </p>
-    <SyntaxHighlighter
-      language="javascript"
-      style={atomOneDark}
-      customStyle={{
-        padding: '1.5rem',
-        height: '24rem',
-        overflow: 'auto',
-      }}
-    >{`import Image from 'next/future/image';
+  <>
+    <Head>
+      <title>Glimpse - Hayden Bleasel</title>
+      <meta
+        name="description"
+        content="Glimpse is a simple website screenshot tool to create link previews!"
+      />
+    </Head>
+    <div className="container prose mx-auto py-24 px-4">
+      <div className="mb-16 text-gray-400">
+        <Camera />
+      </div>
+      <h1>Glimpse</h1>
+      <p>
+        Glimpse is a simple website screenshot tool{' '}
+        <Link href="https://haydenbleasel.com/">Hayden Bleasel</Link> made to
+        create link previews! It&apos;s effectively an serverless API endpoint
+        deployed on <Link href="https://vercel.com/">Vercel</Link> takes a URL
+        and returns a screenshot of the page.
+      </p>
+      <h2>Can I use it on my site?</h2>
+      <p>
+        This specific domain is password-protected and designed to run my
+        websites (my{' '}
+        <Link href="https://haydenbleasel.com/">personal site</Link> and{' '}
+        <Link href="https://tryneutral.com">Neutral</Link>) however if you fork
+        the repo and deploy it to Vercel, you can use it on your site.
+      </p>
+      <h2>Why is it in a seperate repo?</h2>
+      <p>
+        Long story short, Vercel serverless functions have a 50MB limit which
+        does{' '}
+        <Link href="https://github.com/vercel/community/discussions/103">
+          not always
+        </Link>{' '}
+        calculate the way you think it would. Other dependencies get mixed in
+        the bundle size, even if they are not used in the API handler. It also
+        needs{' '}
+        <Link href="https://github.com/alixaxel/chrome-aws-lambda/issues/275">
+          Node 14
+        </Link>{' '}
+        to run, which is a pretty specific requirement. So, I made it a separate
+        repo to avoid all that drama and i just <code>fetch()</code> it from the
+        API handler in my personal sites.
+      </p>
+      <h2>Can I see a demo?</h2>
+      <p>
+        You&apos;re looking at it! All the external links on this site use
+        Glimpse to generate a preview. If you want to see how the API works,
+        just enter a URL below (or use my personal website) and hit the button
+        to see the result.
+      </p>
+      <h2>Once I clone it, how do I make it work?</h2>
+      <p>Like so!</p>
+      <h3>Client-side</h3>
+      <p>
+        Really depends on your implementation method but I used a{' '}
+        <code>useAsync</code> hook from{' '}
+        <Link href="https://react-hookz.github.io/web/?path=/docs/side-effect-useasync--example">
+          @react-hookz/web
+        </Link>{' '}
+        to fetch the screenshot on-request client-side.
+      </p>
+      <SyntaxHighlighter
+        language="javascript"
+        style={atomOneDark}
+        customStyle={{
+          padding: '1.5rem',
+          height: '24rem',
+          overflow: 'auto',
+        }}
+      >{`import Image from 'next/future/image';
 import Link from 'next/link';
 import type { FC } from 'react';
 import { useAsync, useMountEffect } from '@react-hookz/web';
@@ -123,18 +135,18 @@ const PreviewLink: FC<{ href: string }> = ({ children, href, ...props }) => {
 };
 
 export default PreviewLink;`}</SyntaxHighlighter>
-    <h3>
-      <code>/api/screenshot.ts</code>
-    </h3>
-    <SyntaxHighlighter
-      language="javascript"
-      style={atomOneDark}
-      customStyle={{
-        padding: '1.5rem',
-        height: '24rem',
-        overflow: 'auto',
-      }}
-    >{`import type { NextApiHandler } from 'next';
+      <h3>
+        <code>/api/screenshot.ts</code>
+      </h3>
+      <SyntaxHighlighter
+        language="javascript"
+        style={atomOneDark}
+        customStyle={{
+          padding: '1.5rem',
+          height: '24rem',
+          overflow: 'auto',
+        }}
+      >{`import type { NextApiHandler } from 'next';
 
 export type ScreenshotResponse = {
   error?: string;
@@ -190,33 +202,34 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
 
 export default handler;
 `}</SyntaxHighlighter>
-    <h2>What are the limitations?</h2>
-    <p>Two primarily, which I'll work on fixing over time:</p>
-    <ol>
-      <li>
-        Vercel serverless functions are limited to a 10-second timeout. You
-        would think this is fine, but I have an inkling that doing multiple
-        concurrent requests causes the function to stay on which causes later
-        requests to timeout. 🤷‍♀️
-      </li>
-      <li>
-        Puppeteer itself has a timeout which I may need to rework to fit
-        Vercel&apos;s timeout.
-      </li>
-    </ol>
-    <p>
-      If a screenshot fails to load, it returns a nice error and you can handle
-      this on the client-side like I&apos;ve done above.
-    </p>
-    <h2>Enough with the preamble. Gimme the code!</h2>
-    <p>
-      Fine! You can check out the source code on the{' '}
-      <Link href="https://github.com/haydenbleasel/glimpse">GitHub repo</Link>.
-      Feel free to fork it and do whatever, but a{' '}
-      <Star size={16} className="inline align-baseline text-orange-600" /> would
-      be appreciated!
-    </p>
-  </div>
+      <h2>What are the limitations?</h2>
+      <p>Two primarily, which I'll work on fixing over time:</p>
+      <ol>
+        <li>
+          Vercel serverless functions are limited to a 10-second timeout. You
+          would think this is fine, but I have an inkling that doing multiple
+          concurrent requests causes the function to stay on which causes later
+          requests to timeout. 🤷‍♀️
+        </li>
+        <li>
+          Puppeteer itself has a timeout which I may need to rework to fit
+          Vercel&apos;s timeout.
+        </li>
+      </ol>
+      <p>
+        If a screenshot fails to load, it returns a nice error and you can
+        handle this on the client-side like I&apos;ve done above.
+      </p>
+      <h2>Enough with the preamble. Gimme the code!</h2>
+      <p>
+        Fine! You can check out the source code on the{' '}
+        <Link href="https://github.com/haydenbleasel/glimpse">GitHub repo</Link>
+        . Feel free to fork it and do whatever, but a{' '}
+        <Star size={16} className="inline align-baseline text-orange-600" />{' '}
+        would be appreciated!
+      </p>
+    </div>
+  </>
 );
 
 export default Home;
