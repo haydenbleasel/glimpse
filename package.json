@@ -13,6 +13,7 @@
     "chrome-aws-lambda": "^10.1.0",
     "next": "12.2.1",
     "next-secure-headers": "^2.2.0",
+    "next-seo": "^5.4.0",
     "puppeteer-core": "^15.3.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",

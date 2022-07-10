@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 import { Camera, Globe, Star } from 'react-feather';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import js from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript';
@@ -8,21 +8,43 @@ import Link from '../components/link';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 
+const url = 'https://glimpse.haydenbleasel.com/';
+const title = 'Glimpse - Hayden Bleasel';
+const description =
+  'Glimpse is a simple website screenshot tool to create link previews!';
+
 const Home: NextPage = () => (
   <>
-    <Head>
-      <title>Glimpse - Hayden Bleasel</title>
-      <meta
-        name="description"
-        content="Glimpse is a simple website screenshot tool to create link previews!"
-      />
-      <link rel="og:image" href="http://glimpse.haydenbleasel.com/cover.png" />
-      <link
-        rel="icon"
-        type="image/png"
-        href="http://glimpse.haydenbleasel.com/favicon.png"
-      />
-    </Head>
+    <NextSeo
+      title="Glimpse - Hayden Bleasel"
+      description="Glimpse is a simple website screenshot tool to create link previews!"
+      canonical={url}
+      openGraph={{
+        url,
+        title,
+        description,
+        images: [
+          {
+            url: new URL('/cover.png', url).href,
+            width: 1200,
+            height: 630,
+            alt: 'Glimpse',
+            type: 'image/png',
+          },
+        ],
+      }}
+      additionalLinkTags={[
+        {
+          rel: 'icon',
+          type: 'image/png',
+          href: new URL('/favicon.png', url).href,
+        },
+      ]}
+      twitter={{
+        handle: '@haydenbleasel',
+        cardType: 'summary_large_image',
+      }}
+    />
     <div className="container prose mx-auto py-24 px-4">
       <div className="text-md mb-16 flex items-center gap-2 text-gray-400">
         <Camera />
