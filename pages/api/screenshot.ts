@@ -22,14 +22,18 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
     height = 1080,
     waitUntil = 'networkidle0',
   } = req.body as RequestData;
+  const referer =
+    req.headers instanceof Headers
+      ? req.headers.get('referer')
+      : req.headers.referer;
 
   if (!url) {
     res.status(400).json({ error: 'No URL specified' });
     return;
   }
 
-  if (!req.headers.referer?.includes('haydenbleasel.com')) {
-    res.status(401).json({ error: 'Unauthorized' });
+  if (!referer?.includes('haydenbleasel.com')) {
+    res.status(401).json({ error: `Unauthorized: ${referer ?? 'None'}` });
     return;
   }
 
