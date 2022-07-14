@@ -50,11 +50,12 @@ const Home: NextPage = () => (
       </div>
       <h1>Glimpse</h1>
       <p>
-        Glimpse is a simple website screenshot tool{' '}
+        Glimpse is a simple proof of concept screenshot tool{' '}
         <Link href="https://haydenbleasel.com/">Hayden Bleasel</Link> made to
-        create link previews! It&apos;s effectively an serverless API endpoint
-        deployed on <Link href="https://vercel.com/">Vercel</Link> takes a URL
-        and returns a screenshot of the page.
+        create link previews! The idea was to effectively create a serverless
+        API endpoint deployed on a hobby{' '}
+        <Link href="https://vercel.com/">Vercel</Link> plan that takes a URL and
+        returns a screenshot of the page.
       </p>
       <h2>Can I use it on my site?</h2>
       <p>
@@ -166,7 +167,6 @@ export type ScreenshotResponse = {
 
 /* Replace this with your own data */
 const glimpse = 'https://glimpse.haydenbleasel.com/api/screenshot';
-const auth = 'my-secret-passphrase';
 
 const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
   const { url } = JSON.parse(req.body as string) as { url: string };
@@ -183,7 +183,6 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': auth,
         },
         body: JSON.stringify({
           url,
@@ -238,7 +237,8 @@ export default handler;
       </ol>
       <p>
         If a screenshot fails to load, it returns a nice error and you can
-        handle this on the client-side like I&apos;ve done above.
+        handle this on the client-side like I&apos;ve done above, by removing
+        the entire preview.
       </p>
       <h2>This seems super complex. Why not just use an iframe?</h2>
       <p>
