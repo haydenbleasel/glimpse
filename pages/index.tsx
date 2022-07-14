@@ -85,9 +85,7 @@ const Home: NextPage = () => (
       <h2>Can I see a demo?</h2>
       <p>
         You&apos;re looking at it! All the external links on this site use
-        Glimpse to generate a preview. If you want to see how the API works,
-        just enter a URL below (or use my personal website) and hit the button
-        to see the result.
+        Glimpse to generate a preview.
       </p>
       <h2>Once I clone it, how do I make it work?</h2>
       <p>Like so!</p>
