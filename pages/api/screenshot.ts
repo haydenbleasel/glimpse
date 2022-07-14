@@ -22,20 +22,14 @@ const handler: NextApiHandler<ScreenshotResponse> = async (req, res) => {
     height = 1080,
     waitUntil = 'networkidle0',
   } = req.body as RequestData;
-  const authorizationHeader =
-    req.headers instanceof Headers
-      ? req.headers.get('authorization')
-      : req.headers.authorization;
 
   if (!url) {
     res.status(400).json({ error: 'No URL specified' });
     return;
   }
 
-  if (authorizationHeader !== process.env.GLIMPSE_PASSPHASE) {
-    res
-      .status(401)
-      .json({ error: `Unauthorized: ${authorizationHeader ?? 'None'}` });
+  if (!req.headers.referer?.includes('haydenbleasel.com')) {
+    res.status(401).json({ error: 'Unauthorized' });
     return;
   }
 

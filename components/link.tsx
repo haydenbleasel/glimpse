@@ -13,7 +13,7 @@ type PreviewLinkProps = LinkProps & {
 
 const PreviewLink: FC<PreviewLinkProps> = ({ children, href, ...props }) => {
   const [screenshot, { execute }] = useAsync(async () => {
-    const response = await fetch('/api/internal-screenshot', {
+    const response = await fetch('/api/screenshot', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
