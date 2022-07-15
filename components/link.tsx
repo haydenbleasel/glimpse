@@ -4,6 +4,7 @@ import Link from 'next/link';
 import type { FC, ReactNode } from 'react';
 import { useAsync, useMountEffect } from '@react-hookz/web';
 import { ArrowUpRight } from 'react-feather';
+import type { ScreenshotResponse } from 'pages/api/screenshot';
 import Placeholder from './placeholder';
 
 type PreviewLinkProps = LinkProps & {
